@@ -2,49 +2,28 @@
 """
 cross_venue_collector.py — synchronized Kalshi + Polymarket order-book recorder.
 
-Collection layer for the cross-venue price discovery study:
-which venue leads when the same World Cup outcome reprices?
+Collection layer for a cross-venue price discovery study (Kalshi vs. Polymarket,
+2026 World Cup markets).
 
-DESIGN PRINCIPLE — ONE CLOCK:
-Each cycle fetches Kalshi then Polymarket back-to-back and stamps every row
-from the same local clock. Cross-venue lead/lag is only measurable if both
-feeds share a timestamp source; two independent recorders would make the
-core question (who moved first?) unanswerable. Intra-cycle skew between the
-two fetches is recorded per-row (t_fetch) so it can be bounded in analysis.
+Timestamping: each cycle fetches Kalshi then Polymarket sequentially and stamps
+all rows from the same local clock (ts = cycle start, t_fetch = per-request).
+Cross-venue lead/lag analysis requires a single timestamp source; intra-cycle
+skew is recorded per row so it can be bounded.
 
-NO AUTH NEEDED on either venue for market data:
-  Kalshi     GET https://api.elections.kalshi.com/trade-api/v2/markets/{t}/orderbook
-  Polymarket GET https://clob.polymarket.com/book?token_id={id}
-  Polymarket discovery: Gamma API https://gamma-api.polymarket.com (public)
+Both venues' market-data endpoints are public (no auth):
+  Kalshi:     GET https://api.elections.kalshi.com/trade-api/v2/markets/{ticker}/orderbook
+  Polymarket: GET https://clob.polymarket.com/book?token_id={id}
+  Discovery:  Polymarket Gamma API, https://gamma-api.polymarket.com
 
-USAGE
-  python3 cross_venue_collector.py selftest
-      Offline check: parse synthetic books from both venues' real formats,
-      confirm both normalize to the same (bid, ask, mid, spread) cents schema.
+Commands:
+  selftest    offline parser check against both venues' response formats
+  discover    search Gamma for events/markets, print outcome token IDs
+  peek        one synchronized fetch of a Kalshi/Polymarket pair, side by side
+  record      poll pairs on an interval, append rows to a JSONL file
 
-  python3 cross_venue_collector.py discover --query "world cup"
-      Search Polymarket's Gamma API for matching events/markets and print
-      each market's outcome names and CLOB token IDs. Use this to find the
-      Polymarket token that corresponds to a Kalshi ticker.
-
-  python3 cross_venue_collector.py peek --kalshi TICKER --poly TOKEN_ID
-      One synchronized fetch of both books, printed side by side.
-      The calibration gate: run this BEFORE any recording session.
-
-  python3 cross_venue_collector.py record --pairs KALSHI_TICKER:POLY_TOKEN_ID ... \
-                                     --minutes 180 --outfile cross_venue.jsonl
-      Poll all pairs each cycle. One row per venue per pair per cycle.
-
-OUTPUT SCHEMA (one JSON object per line)
-  ts        local wall-clock ms at cycle start (shared across the cycle)
-  t_fetch   local wall-clock ms just before THIS venue's HTTP request
-  venue     "kalshi" | "polymarket"
-  pair      the KALSHI_TICKER:POLY_TOKEN_ID string (join key across venues)
-  bid, ask, mid, spread   in CENTS (float, subpenny preserved)
-  bid_sz, ask_sz          size at touch, venue-native units
-  venue_ts  venue-reported book timestamp, if provided (Polymarket has one)
-
-Everything downstream (alignment, VECM, information shares) reads this file.
+Output schema (one JSON object per line):
+  ts, t_fetch (local ms), venue, pair, bid/ask/mid/spread (cents, subpenny
+  preserved), bid_sz/ask_sz (venue-native), venue_ts (if the venue reports one)
 """
 
 import argparse
@@ -80,8 +59,9 @@ def _get(url, params=None):
 
 
 # ---------------------------------------------------------------------------
-# KALSHI SIDE — bid-only book, reconstruct the ask from NO bids.
-# Same parsing as kalshi_mm_probe.py (orderbook_fp / *_dollars, subpenny).
+# Kalshi: bid-only book; YES ask = 100 - best NO bid. Prices arrive as
+# fixed-point dollar strings under orderbook_fp / *_dollars with sub-cent
+# ticks, preserved by the parser.
 # ---------------------------------------------------------------------------
 def _k_norm(p):
     if p is None:
@@ -281,8 +261,8 @@ def selftest():
           f"{'PASS' if p_ok else 'FAIL'}\n")
 
     ok = k_ok and p_ok
-    print("SELF-TEST", "PASS ✔" if ok else "FAIL ✗",
-          "— both venues normalize to one comparable cents schema.")
+    print("SELF-TEST", "PASS" if ok else "FAIL",
+          ": both venues normalize to one comparable cents schema.")
     return ok
 
 
