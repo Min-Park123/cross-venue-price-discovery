@@ -29,3 +29,33 @@ pair: KXMENWORLDCUP-26-MX:225877753018691467482379130505059324856489584815718083
   COMMITTED RULE (MX): event = |basis - (+1.29¢)| > 1.14¢, sustained >=30s  [branch: 4-sigma]
 
 ```
+
+## Pre-match baseline — recorded 2026-07-06 11:48:50 local
+
+```
+Pre-match basis baseline — cross_venue_portugal_spain_v3.jsonl
+generated 2026-07-06 11:48:50.271 local
+
+pair: KXMENWORLDCUP-26-ES:4394372887385518214471608448209527405727552777602031099972143344338178308080
+  n snapshots     : 61
+  basis mean/std  : +0.893 / 0.036 cents
+  basis min/max   : +0.700 / +0.900 cents
+  timestamp range : 2026-07-06 11:45:13.873 -> 2026-07-06 11:48:46.471
+  suggested event-detection threshold (mean +/- k*std):
+    3-sigma: [+0.786, +1.001] cents
+    4-sigma: [+0.750, +1.037] cents
+    5-sigma: [+0.714, +1.073] cents
+  COMMITTED RULE (ES): event = |basis - (+0.89¢)| > 1.00¢, sustained >=30s  [branch: 1-cent floor]
+
+pair: KXMENWORLDCUP-26-PT:45415751658241142530386585138386640503488308219341470020075667342738719018629
+  n snapshots     : 61
+  basis mean/std  : +0.570 / 0.046 cents
+  basis min/max   : +0.500 / +0.600 cents
+  timestamp range : 2026-07-06 11:45:13.873 -> 2026-07-06 11:48:46.471
+  suggested event-detection threshold (mean +/- k*std):
+    3-sigma: [+0.433, +0.708] cents
+    4-sigma: [+0.387, +0.754] cents
+    5-sigma: [+0.341, +0.800] cents
+  COMMITTED RULE (PT): event = |basis - (+0.57¢)| > 1.00¢, sustained >=30s  [branch: 1-cent floor]
+
+```
