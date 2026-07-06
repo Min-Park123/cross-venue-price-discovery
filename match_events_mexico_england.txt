@@ -1,0 +1,22 @@
+MEXICO-ENGLAND EVENT LOG Sun Jul  5 17:56:49 MST 2026
+1' | 18:02:15 | Yellow Card England
+36' | 18:38:42 | England Goal
+37' | 18:39:03 | England Goal
+43' | 18:45:41 | Mexico Goal
+HT | 18:52:31 | Halftime, score 2-1 England
+2H | 19:08:08 | Second half kickoff
+53' | 19:16:34 | VAR Review for Penalty
+54' | 19:17:23 | Jude Bellingham Red Card
+CORRECTION | 19:19:22 | Red card was NOT Bellingham, other England player, original event time stands
+57' | 19:21:56 | Penalty Kick for England
+59' | 19:23:03 | England Goal
+66' | 19:29:48 | VAR check possible penalty Mexico
+67' | 19:30:51 | Penalty Kick for Mexico
+68' | 19:31:35 | Yellow Card for Harry Kane
+68' | 19:32:11 | Mexico Goal
+71' | 19:34:30 | Mexico Yellow Card
+74' | 19:37:40 | England Yellow Card
+FT | 20:08:53 | Full time, score X-X
+FT | 20:09:35 | Full time, score 3-2 England Win
+CORRECTION | 20:11:29 | 68' Mexico Goal was the 67' penalty converted, one sequence not two events
+OFFICIAL TIMELINE per ESPN: [red card player] 54', goals: [scorer] 36', [scorer] 37', [scorer] 43', [scorer] pen 59', [scorer] pen 68'
