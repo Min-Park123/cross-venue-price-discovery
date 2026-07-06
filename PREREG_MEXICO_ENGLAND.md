@@ -59,3 +59,33 @@ pair: KXMENWORLDCUP-26-PT:454157516582411425303865851383866405034883082193414700
   COMMITTED RULE (PT): event = |basis - (+0.57¢)| > 1.00¢, sustained >=30s  [branch: 1-cent floor]
 
 ```
+
+## Pre-match baseline — recorded 2026-07-06 16:30:59 local
+
+```
+Pre-match basis baseline — cross_venue_usa_belgium_v2.jsonl
+generated 2026-07-06 16:30:59.424 local
+
+pair: KXMENWORLDCUP-26-BE:30815807067456631524510535002617106205417832891402132396713720656146245200000
+  n snapshots     : 274
+  basis mean/std  : +0.100 / 0.000 cents
+  basis min/max   : +0.100 / +0.100 cents
+  timestamp range : 2026-07-06 16:14:42.508 -> 2026-07-06 16:30:58.065
+  suggested event-detection threshold (mean +/- k*std):
+    3-sigma: [+0.100, +0.100] cents
+    4-sigma: [+0.100, +0.100] cents
+    5-sigma: [+0.100, +0.100] cents
+  COMMITTED RULE (BE): event = |basis - (+0.10¢)| > 1.00¢, sustained >=30s  [branch: 1-cent floor]
+
+pair: KXMENWORLDCUP-26-US:94603648636330087039501304492699481091005420017442244191603206509188088089447
+  n snapshots     : 274
+  basis mean/std  : +0.500 / 0.030 cents
+  basis min/max   : +0.400 / +0.600 cents
+  timestamp range : 2026-07-06 16:14:42.508 -> 2026-07-06 16:30:58.065
+  suggested event-detection threshold (mean +/- k*std):
+    3-sigma: [+0.411, +0.589] cents
+    4-sigma: [+0.382, +0.619] cents
+    5-sigma: [+0.352, +0.649] cents
+  COMMITTED RULE (US): event = |basis - (+0.50¢)| > 1.00¢, sustained >=30s  [branch: 1-cent floor]
+
+```
