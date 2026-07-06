@@ -1,0 +1,9 @@
+PORTUGAL-SPAIN EVENT LOG Mon Jul  6 11:58:39 MST 2026
+HT | 12:52:16 | Halftime, score 0-0
+2H | 13:08:02 | Second half kickoff
+88' | 13:52:28 | Yellow card Silva POR
+90' | 13:53:46 | GOAL Spain
+90+3' | 13:57:14 | Yellow card Veiga POR
+REFINE | 13:59:51 | 90' Spain goal scorer: Merino
+90+8' | 14:01:45 | Yellow card Torres ESP
+FT | 14:01:56 | Full time, 1-0 Spain, Portugal eliminated
