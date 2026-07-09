@@ -6,7 +6,7 @@ JSONL file (see cross_venue_collector.py for the schema this reads).
 For each contract pair present in the file, pairs up the nearest Kalshi and
 Polymarket snapshots by timestamp, computes basis = kalshi_mid - poly_mid in
 cents, and reports summary stats plus a suggested 3/4/5-sigma event-detection
-threshold. The threshold is also appended to PREREG_MEXICO_ENGLAND.md with a
+threshold. The threshold is also appended to PREREGISTRATIONS.md with a
 wall-clock timestamp, so it's committed to the repo before kickoff.
 
 Usage:
@@ -21,7 +21,7 @@ from datetime import datetime
 import pandas as pd
 
 DEFAULT_INFILE = "cross_venue_mexico_england.jsonl"
-PREREG_FILE = "PREREG_MEXICO_ENGLAND.md"
+PREREG_FILE = "PREREGISTRATIONS.md"
 
 
 def load_rows(path):
