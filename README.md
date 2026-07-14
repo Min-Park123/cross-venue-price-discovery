@@ -1,23 +1,17 @@
-# Cross-Venue Price Discovery: Kalshi vs. Polymarket
+# Cross-Venue Price Discovery in World Cup Prediction Markets
 
-Which venue leads price discovery when the same 2026 World Cup outcome trades
-simultaneously on a CFTC-regulated exchange (Kalshi) and a decentralized
-prediction market (Polymarket)?
+**Research question:** When new match information changes the value of a World Cup tournament-outright contract, which venue—Kalshi or Polymarket—incorporates it first?
 
-Method: synchronized order-book collection from both venues (single-clock
-recorder), cointegration testing, VECM estimation, and Hasbrouck information
-shares / Gonzalo-Granger decomposition of price discovery.
+The evidence does not identify one platform as universally faster. Instead, price discovery depends on the market regime. When both order books were active and the event was large enough to move the contract, Polymarket moved first in both cleanly adjudicated lead-follow cases (**n = 2**). In a thin longshot market, Kalshi repriced the Mexico contract while Polymarket remained stale for roughly four minutes. In event-insensitive longshot contracts, the information was worth less than the one-cent tick, so neither venue repriced and there was no lead to assign.
 
-**Status: data collection in progress** (World Cup knockout rounds, July 2026).
-Collection window closes with the final on July 19.
+Data were collected from both public order-book APIs on a single local clock at an approximately 3.7-second cycle. Cross-venue divergence thresholds and baseline windows were publicly pre-registered before kickoff. Final lead verdicts were re-derived from raw bid, ask, midpoint, and spread traces rather than accepted from automated first-crossing estimators.
 
-Prequel: [kalshi-mm-study](https://github.com/Min-Park123/kalshi-mm-study) —
-established that market-making within Kalshi is fee-bound on liquid books;
-this study asks where the information that moves those books arrives first.
+## Project status
 
-## Files
-- `cross_venue_collector.py` — synchronized two-venue recorder (offline
-  self-test: `python3 cross_venue_collector.py selftest`)
-- `cross_venue_paraguay_france.jsonl` — synchronized two-venue session,
-  Paraguay–France R16 (10,672 rows, clean collection)
-- `PRELIMINARY.md` — first event-window observation (n=1)
+**Complete.** The repository contains five recording sessions covering four World Cup Round of 16 matches and one quiet-window control.
+
+## Read the study
+
+- [Full writeup](WRITEUP.md)
+- [Pre-registrations](PREREGISTRATIONS.md)
+- [Preliminary n=1 observation](PRELIMINARY.md)

@@ -1,3 +1,6 @@
+> **Superseded by [WRITEUP.md](WRITEUP.md).** This file is preserved as the n=1 observation
+> that motivated the full study; its findings are incorporated and extended there.
+
 # Preliminary Observation — Paraguay vs. France (R16, 4 July 2026)
 
 **Status: n=1. One event, one match, one venue pair. This is an anecdote, not an
