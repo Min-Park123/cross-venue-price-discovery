@@ -2,3 +2,8 @@ __pycache__/
 .DS_Store
 *.backup.jsonl
 nohup.out
+
+mbappe_out.txt
+traces_for_review.txt
+usa_belgium_out.txt
+*_out.txt
